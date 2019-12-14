@@ -40,7 +40,15 @@
             return {info: null}
         },
         mounted() {
-            axios.get(host + "/api/user/" + this.id, {})
+            let url;
+            if (this.id === undefined) {
+                url = host + "/api/user/";
+            } else {
+
+                url = host + "/api/users/" + this.id;
+            }
+
+            axios.get(url, {})
                 .then(response => {
                     let result = response.data;
                     let code = result.code;

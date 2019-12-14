@@ -18,7 +18,7 @@
 
 <script>
     import axios from 'axios'
-    import host from "@/static/constans"
+    import {csrf_head} from "@/static/constans"
 
     export default {
         name: "UserRegister",
@@ -32,21 +32,42 @@
         },
         methods: {
             submit: function () {
-                axios.post(host + "/api/user/register", {
+                axios.post("/api/user/register", {
                     name: this.userName,
                     email: this.userEmail,
                     password: this.userPassword
+                }, {
+                    headers: {
+                        "X-XSRF-TOKEN": this.$cookies.get(csrf_head)
+                    }
                 })
                     .then(response => {
                         let result = response.data;
                         let code = result.code;
                         let message = result.message;
-                        if (code != 200) {
+                        if (code !== 200) {
                             alert(message);
                         }
                         this.info = result
                     })
             }
+        }, mounted() {
+            axios.get("/api/web/csrf", {
+                headers: {'X-Requested-With': 'XMLHttpRequest'}
+            })
+                .then(response => {
+                    let result = response.data;
+                    let code = result.code;
+                    let message = result.message;
+                    // eslint-disable-next-line no-unused-vars
+                    let data = result.data;
+                    if (code !== 200) {
+                        alert(message);
+                        return
+                    }
+                    this.info = result;
+                    this.$cookies.set(csrf_head, data.token)
+                })
         }
     }
 </script>

@@ -7914,6 +7914,11 @@ vm-browserify@^1.0.1:
   resolved "https://registry.npm.taobao.org/vm-browserify/download/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha1-eGQcSIuObKkadfUR56OzKobl3aA=
 
+vue-cookies@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.npm.taobao.org/vue-cookies/download/vue-cookies-1.6.0.tgz#4f658aeac639bdd8b0b9a72dd270fa3d9e2e9e78"
+  integrity sha1-T2WK6sY5vdiwuact0nD6PZ4unng=
+
 vue-eslint-parser@^5.0.0:
   version "5.0.0"
   resolved "https://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-5.0.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-eslint-parser%2Fdownload%2Fvue-eslint-parser-5.0.0.tgz#00f4e4da94ec974b821a26ff0ed0f7a78402b8a1"
