@@ -6,6 +6,7 @@
 
 <script>
     import axios from 'axios'
+    import host from "@/static/constans";
 
     export default {
         name: "ApiDemo",
@@ -15,9 +16,7 @@
             }
         },
         mounted() {
-            axios.get("http://localhost:8080/api/users/list", {
-                // headers: {'X-Custom-Header': 'foobar'}
-            })
+            axios.get(host + "/api/users/list", {})
                 .then(response => (this.info = response))
         }
     }
