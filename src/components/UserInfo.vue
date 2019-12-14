@@ -42,8 +42,18 @@
         mounted() {
             axios.get(host + "/api/user/" + this.id, {})
                 .then(response => {
-
-                    let data = response.data.data;
+                    let result = response.data;
+                    let code = result.code;
+                    let message = result.message;
+                    let data = result.data;
+                    if (code === -200) {
+                        alert("用户未找到")
+                        return
+                    }
+                    if (code !== 200) {
+                        alert(message);
+                        return
+                    }
                     this.info = {
                         name: data.name,
                         email: data.email

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form method="post" action="/api/user/login">
+        <form>
             用户名： <input name="user"> <br/>
             密码： <input name="password" type="password"> <br/>
             <button type="submit">登录</button>

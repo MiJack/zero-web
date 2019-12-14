@@ -1,11 +1,15 @@
 <template>
     <div>
-        <form method="post" action="/api/user/register" @submit.prevent="submit($event)">
-            用户： <input id="user" name="user"> <br/>
-            邮箱： <input id="email" name="email"> <br/>
-            密码： <input id="password" name="password" type="password"> <br/>
+        <form @submit.prevent="submit">
+            用户： <input v-model="userName"> <br/>
+            邮箱： <input v-model="userEmail"> <br/>
+            密码： <input v-model="userPassword" type="password"> <br/>
             <button type="submit">注册</button>
         </form>
+
+        {{info}}
+
+        <br/>
         <router-link to="/user/login">登录</router-link>
 
     </div>
@@ -13,15 +17,36 @@
 </template>
 
 <script>
+    import axios from 'axios'
+    import host from "@/static/constans"
+
     export default {
         name: "UserRegister",
-        method: {
-        //     submit: function (event) {
-        //
-        //         // var formData = new FormData(event.target);
-        //
-        //
-        //     }
+        data: function () {
+            return {
+                userName: null,
+                userEmail: null,
+                userPassword: null,
+                info: null
+            }
+        },
+        methods: {
+            submit: function () {
+                axios.post(host + "/api/user/register", {
+                    name: this.userName,
+                    email: this.userEmail,
+                    password: this.userPassword
+                })
+                    .then(response => {
+                        let result = response.data;
+                        let code = result.code;
+                        let message = result.message;
+                        if (code != 200) {
+                            alert(message);
+                        }
+                        this.info = result
+                    })
+            }
         }
     }
 </script>
