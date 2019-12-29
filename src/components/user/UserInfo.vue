@@ -41,7 +41,7 @@
         props: ['id'],
         name: "UserInfo",
         data() {
-            return {info: null}
+            return {info: {name: null, email: null}}
         },
         mounted() {
             let url;
@@ -70,14 +70,8 @@
                         name: data.name,
                         email: data.email
                     }
-                    // eslint-disable-next-line no-unused-vars
                 }).catch(reason => {
                 alert(reason);
-                this.id = -1;
-                this.info = {
-                    name: "测试用名",
-                    email: "test@test.com"
-                }
             })
         }
     }
