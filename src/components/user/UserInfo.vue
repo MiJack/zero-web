@@ -10,12 +10,16 @@
 
         <h1>账户管理</h1>
         账户列表
+        <router-link to="/user/account/add">添加账户</router-link>
+
         <ul>
             <li>账户1</li>
             <li>账户2</li>
             <li>账户3</li>
             <li>账户4</li>
         </ul>
+        <router-link to="/user/transaction/add">添加交易</router-link>
+
         分页
         <ul>
             <li>1</li>
@@ -31,7 +35,7 @@
 
 <script>
     import axios from 'axios'
-    import host from "@/static/constans";
+    import {host} from "@/static/constans";
 
     export default {
         props: ['id'],
@@ -66,7 +70,15 @@
                         name: data.name,
                         email: data.email
                     }
-                })
+                    // eslint-disable-next-line no-unused-vars
+                }).catch(reason => {
+                alert(reason);
+                this.id = -1;
+                this.info = {
+                    name: "测试用名",
+                    email: "test@test.com"
+                }
+            })
         }
     }
 </script>

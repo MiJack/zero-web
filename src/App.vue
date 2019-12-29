@@ -1,4 +1,3 @@
-
 <template>
     <div id="app">
         <h2>router demo</h2>
@@ -9,8 +8,7 @@
 <script>
     export default {
         name: 'app',
-        components: {
-        },
+        components: {},
     }
 </script>
 
@@ -19,8 +17,16 @@
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        text-align: center;
         color: #2c3e50;
-        margin-top: 60px;
+    }
+
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    li {
+        list-style-type: none;
+        text-decoration: none;
     }
 </style>

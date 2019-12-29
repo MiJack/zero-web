@@ -6,7 +6,7 @@
 
 <script>
     import axios from 'axios'
-    import host from "@/static/constans";
+    import {host} from "@/static/constans";
 
     export default {
         name: "ApiDemo",
