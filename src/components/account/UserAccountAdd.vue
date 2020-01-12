@@ -20,6 +20,9 @@
             <button type="submit">提交</button>
         </form>
 
+        <router-link to="/manager/account/type/add">添加账号类型</router-link>
+
+
 
     </div>
 </template>
