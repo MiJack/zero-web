@@ -18,9 +18,11 @@
             <li>账户3</li>
             <li>账户4</li>
         </ul>
+        分页
+        <h1>消费管理</h1>
+        消费记录列表
         <router-link to="/user/transaction/add">添加交易</router-link>
 
-        分页
         <ul>
             <li>1</li>
             <li>...</li>
@@ -35,7 +37,7 @@
 
 <script>
     import axios from 'axios'
-    import {host} from "@/static/constans";
+    import { api_head, host} from "@/static/constans";
 
     export default {
         props: ['id'],
@@ -46,13 +48,17 @@
         mounted() {
             let url;
             if (this.id === undefined) {
-                url = host + "/api/user/";
+                url = host + "/api/user/info";
             } else {
 
                 url = host + "/api/users/" + this.id;
             }
 
-            axios.get(url, {})
+            axios.get(url, {
+                headers: {
+                    "X-ZERO-API-TOKEN": this.$cookies.get(api_head)
+                }
+            })
                 .then(response => {
                     let result = response.data;
                     let code = result.code;

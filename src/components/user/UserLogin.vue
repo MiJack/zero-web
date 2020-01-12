@@ -1,12 +1,11 @@
 <template>
     <div>
         <form @submit.prevent="submit">
-            用户名： <input name="user"> <br/>
-            密码： <input name="password" type="password"> <br/>
+            邮箱： <input name="user" v-model="user_email"> <br/>
+            密码： <input name="password" type="password" v-model="userPassword"> <br/>
             <button type="submit">登录</button>
         </form>
         <router-link to="/user/register">注册</router-link>
-
     </div>
 
 
@@ -15,16 +14,21 @@
 <script>
 
     import axios from 'axios'
-    import {csrf_head} from "@/static/constans"
-
+    import {csrf_head,api_head} from "@/static/constans"
 
     export default {
         name: "UserLogin",
+        data: function () {
+            return {
+                user_email: null,
+                userPassword: null
+            }
+        },
         methods: {
             submit: function () {
                 axios.post("/api/user/login", {
-                    name: this.userName,
-                    email: this.userEmail,
+                    loginType: 1,
+                    identifiableValue: this.user_email,
                     password: this.userPassword
                 }, {
                     headers: {
@@ -37,8 +41,10 @@
                         let message = result.message;
                         if (code !== 200) {
                             alert(message);
+                            return
                         }
-                        this.info = result
+                        this.$cookies.set(api_head, result.data.apiToken.token)
+                        window.location = '/user/info'
                     })
             }
         }, mounted() {
