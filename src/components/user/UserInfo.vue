@@ -2,7 +2,7 @@
     <div>
         用户信息
 
-        <p>id: {{id}}</p>
+        <p>id: {{info.id}}</p>
         <h1>info</h1>
         用户名： {{ info.name}}<br/>
         邮箱： {{ info.email }}<br/>
@@ -11,13 +11,7 @@
         <h1>账户管理</h1>
         账户列表
         <router-link to="/user/account/add">添加账户</router-link>
-
-        <ul>
-            <li>账户1</li>
-            <li>账户2</li>
-            <li>账户3</li>
-            <li>账户4</li>
-        </ul>
+        <UserAccountList/>
         分页
         <h1>消费管理</h1>
         消费记录列表
@@ -37,13 +31,16 @@
 
 <script>
     import axios from 'axios'
-    import { api_head, host} from "@/static/constans";
+    import {api_head, host} from "@/static/constans";
+    import UserAccountList from "@/components/account/UserAccountList";
+
 
     export default {
+        components: {UserAccountList},
         props: ['id'],
         name: "UserInfo",
         data() {
-            return {info: {name: null, email: null}}
+            return {info: {id: null, name: null, email: null}}
         },
         mounted() {
             let url;
@@ -73,6 +70,7 @@
                         return
                     }
                     this.info = {
+                        id: data.id,
                         name: data.name,
                         email: data.email
                     }
@@ -83,6 +81,10 @@
     }
 </script>
 
-<style scoped>
-
+<style >
+    .icon {
+        /*width: 0px;*/
+        height: 24px;
+        align-content: center;
+    }
 </style>

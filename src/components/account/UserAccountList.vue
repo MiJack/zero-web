@@ -1,12 +1,15 @@
 <template>
     <div>
-        <ul style="float: left">
-
-            <li class="select" :key="index" v-for="(accountType,index) in accountTypes">
-                <input name="accountType" type="radio" v-model="selectAccountType" v-bind:value="accountType.id">
-                <img v-bind:src="accountType.iconUrl" class="icon"/>
-                {{accountType.name}}
-
+        <ul>
+            <li class="select" :key="index" v-for="(account,index) in accounts">
+                <span class="account-id">{{account.id}}</span>
+                <span class="account-title">{{account.title}}</span>
+                <span>
+                    <img v-bind:src="account.accountType.iconUrl" class="icon"/>
+                    <span class="account-type-name">{{account.accountType.name}}</span>
+                    <span class="account-type-billingType">{{account.accountType.billingType}}</span>
+                </span>
+                <span class="account-number">{{account.number}}</span>
             </li>
         </ul>
     </div>
@@ -17,20 +20,14 @@
     import {api_head} from "@/static/constans";
 
     export default {
-        name: "AccountTypeSelect",
+        name: "UserAccountList",
         data: function () {
             return {
-                accountTypes: [],
-                selectAccountType: null
-            }
-        },
-        methods: {
-            getSelectAccountType: function () {
-                return this.selectAccountType;
+                accounts: []
             }
         },
         mounted: function () {
-            axios.get('/api/account/type/list', {
+            axios.get('/api/user/account/list', {
                 headers: {
                     "X-ZERO-API-TOKEN": this.$cookies.get(api_head)
                 }
@@ -48,7 +45,7 @@
                         alert(message);
                         return
                     }
-                    this.accountTypes = data
+                    this.accounts = data
                 }).catch(reason => {
                 alert(reason);
             })
@@ -57,15 +54,5 @@
 </script>
 
 <style scoped>
-    .icon {
-        /*width: 0px;*/
-        height: 24px;
-        align-content: center;
-    }
 
-    .select {
-        float: left;
-        list-style-type: none;
-        text-decoration: none;
-    }
 </style>
