@@ -1,13 +1,14 @@
 <template>
     <div>
         <ul style="float: left">
+            <a-select class="account-type-select" @change="handleAccountTypeChange" v-model="selectAccountType">
+                <a-select-option v-bind:value="accountType.id" :key="index" v-for="(accountType,index) in accountTypes"
+                                 firstActiveValue="true">
+                    <img v-bind:src="accountType.iconUrl" class="icon"/>
+                    {{accountType.name}}
+                </a-select-option>
+            </a-select>
 
-            <li class="select" :key="index" v-for="(accountType,index) in accountTypes">
-                <input name="accountType" type="radio" v-model="selectAccountType" v-bind:value="accountType.id">
-                <img v-bind:src="accountType.iconUrl" class="icon"/>
-                {{accountType.name}}
-
-            </li>
         </ul>
     </div>
 </template>
@@ -27,6 +28,9 @@
         methods: {
             getSelectAccountType: function () {
                 return this.selectAccountType;
+            },
+            handleAccountTypeChange: function () {
+
             }
         },
         mounted: function () {
@@ -57,6 +61,10 @@
 </script>
 
 <style scoped>
+    .account-type-select {
+        width: 300px;
+    }
+
     .icon {
         /*width: 0px;*/
         height: 24px;
