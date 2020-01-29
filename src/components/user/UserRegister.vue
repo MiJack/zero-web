@@ -1,15 +1,33 @@
 <template>
     <div>
-        <form @submit.prevent="submit">
-            用户： <input v-model="userName"> <br/>
-            邮箱： <input v-model="userEmail"> <br/>
-            密码： <input v-model="userPassword" type="password"> <br/>
-            <button type="submit">注册</button>
-        </form>
 
-        {{info}}
+        <div id="components-form-demo-normal-login">
+
+            <a-form class="login-form" @submit="submit">
+                <a-form-item>
+                    <a-input v-model="userName" placeholder="User Name">
+                        <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)"/>
+                    </a-input>
+                </a-form-item>
+                <a-form-item>
+                    <a-input v-model="userEmail" placeholder="User Email">
+                        <a-icon slot="prefix" type="mail" style="color: rgba(0,0,0,.25)"/>
+                    </a-input>
+                </a-form-item>
+                <a-form-item>
+                    <a-input v-model="userPassword" type="password" placeholder="Password">
+                        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)"/>
+                    </a-input>
+                </a-form-item>
+                <a-form-item>
+                    <a-button type="primary" html-type="submit" class="login-form-button">注册</a-button>
+                </a-form-item>
+            </a-form>
+        </div>
 
         <br/>
+
+
         <router-link to="/user/login">登录</router-link>
 
     </div>

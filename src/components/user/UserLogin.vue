@@ -1,10 +1,10 @@
 <template>
     <div id="components-form-demo-normal-login">
 
-        <a-form id="components-form-demo-normal-login" class="login-form" @submit="handleSubmit">
+        <a-form  class="login-form" @submit="handleSubmit">
             <a-form-item>
                 <a-input v-model="userEmail" placeholder="User Email">
-                    <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)"/>
+                    <a-icon slot="prefix" type="mail" style="color: rgba(0,0,0,.25)"/>
                 </a-input>
             </a-form-item>
             <a-form-item>
