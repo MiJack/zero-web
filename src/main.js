@@ -5,12 +5,15 @@ import App from './App.vue'
 import routes from './routes'
 import axios from 'axios'
 import {host} from './static/constans'
-
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
 
 Vue.config.productionTip = false
 
 Vue.use(VueCookies)
 Vue.use(VueRouter)
+Vue.use(Antd);
+
 
 const router = new VueRouter({
     mode: 'history',

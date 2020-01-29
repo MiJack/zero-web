@@ -7,9 +7,11 @@ import ApiDemo from "./components/ApiDemo";
 import UserAccountAdd from "./components/account/UserAccountAdd";
 import UserTransactionAdd from "@/components/transaction/UserTransactionAdd";
 import AccountTypeAdd from "@/components/account/AccountTypeAdd";
+import HomePage from "./components/HomePage";
 
 const routes = [
     {path: '/', component: Index},
+    {path: '/home', component: HomePage},
     {path: '/demo', component: ApiDemo},
     {path: '/user/register', component: UserRegister},
     {path: '/user/login', component: UserLogin},
