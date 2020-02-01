@@ -1,22 +1,38 @@
 <template>
     <div>
-
         <a-table
                 :columns="columns"
                 :rowKey="record => record.id"
                 :dataSource="accounts"
         >
-               <span slot="accountType" slot-scope="accountType">
+            <a-row slot="accountType" slot-scope="accountType">
+                <a-col span="2">
                     <img v-bind:src="accountType.iconUrl" class="icon"/>
-                    <span class="account-type-name">{{accountType.name}}</span>
-                   <a-tooltip slot="suffix" v-bind:title="accountType.billingType">
-                       <a-icon type="info-circle" style="color: rgba(0,0,0,.45)"/>
-                   </a-tooltip>
-                </span>
-            <span slot="accountOp">
+                </a-col>
+                <a-col span="10">
+                    <span class="account-type-name">{{accountType.name}}
+                     <a-tooltip slot="suffix" v-bind:title="accountType.billingType">
+                        <a-icon type="info-circle" style="color: rgba(0,0,0,.45)"/>
+                    </a-tooltip>
+                    </span>
+
+                </a-col>
+            </a-row>
+            <a-row slot="accountOp" align="right">
                 <a-button type="link">查看交易</a-button>
-                <a-button type="danger">删除账号</a-button>
-            </span>
+                <a-button type="danger">注销账号</a-button>
+            </a-row>
+            <a-row slot="lastTransactionTime">
+                -
+            </a-row>
+            <a-row slot="accountAddTime">
+                <a-col align="right">
+                    2020年2月1日
+                </a-col>
+                <a-col align="right">
+                    12:12:12
+                </a-col>
+            </a-row>
 
         </a-table>
     </div>
@@ -30,22 +46,37 @@
         {
             title: 'Id',
             dataIndex: 'id',
-            width: '5%',
+            width: '2%',
         },
         {
             title: '账号名称',
             dataIndex: 'title',
-            width: '20%',
+            width: '13%',
         },
         {
             title: '账号类型',
             dataIndex: 'accountType',
             scopedSlots: {customRender: 'accountType'},
+            width: '40%',
+
+        },
+        {
+            title: '最近交易时间',
+            dataIndex: 'lastTransactionTime',
+            scopedSlots: {customRender: 'lastTransactionTime'},
+            width: '10%',
+        },
+        {
+            title: '添加时间',
+            dataIndex: 'accountAddTime',
+            scopedSlots: {customRender: 'accountAddTime'},
+            width: '10%',
         },
         {
             title: '操作',
             dataIndex: 'accountOp',
             scopedSlots: {customRender: 'accountOp'},
+            width: '20%',
         },
     ];
     export default {

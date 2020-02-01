@@ -1,11 +1,13 @@
 <template>
     <div>
         <ul class="list">
-            <li class="select" :key="index" v-for="(currency,index) in currencyList">
-                <input name="currency" type="radio" v-model="selectCurrency" v-bind:value="currency.id">
-                <span class="">{{currency.name}}</span>
-                <span class="">({{currency.code}})</span>
-            </li>
+            <a-select v-model="selectCurrency">
+                <a-select-option v-bind:value="currency.id" :key="index" v-for="(currency,index) in currencyList"
+                                 firstActiveValue="true">
+                    <span class="">{{currency.name}}</span>
+                    <span class="">({{currency.code}})</span>
+                </a-select-option>
+            </a-select>
         </ul>
     </div>
 </template>

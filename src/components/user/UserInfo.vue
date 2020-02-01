@@ -1,81 +1,36 @@
 <template>
     <div>
-        用户信息
+        <h1>用户信息</h1>
+        <a-card>
+            <h2>基本信息</h2>
+            <UserProfile/>
+        </a-card>
+        <a-card>
 
-        <p>id: {{info.id}}</p>
-        <h1>info</h1>
-        用户名： {{ info.name}}<br/>
-        邮箱： {{ info.email }}<br/>
-        <a-avatar :size="360" src="https://avatars3.githubusercontent.com/u/4158061?s=460&v=4"/>
+            <h2>账户管理</h2>
+            <a-button type="link" href="/user/account/add">添加账户</a-button>
+            <UserAccountList/>
+        </a-card>
+        <a-card>
 
-        <h1>账户管理</h1>
-        <a-button type="link" href="/user/account/add">添加账户</a-button>
-        <UserAccountList/>
-        分页
-        <h1>消费管理</h1>
-        消费记录列表
-        <router-link to="/user/transaction/add">添加交易</router-link>
-
-        <ul>
-            <li>1</li>
-            <li>...</li>
-            <li>11</li>
-            <li>12</li>
-            <li>13</li>
-            <li>...</li>
-            <li>15</li>
-        </ul>
+            <h2>消费管理</h2>
+            <TransactionList/>
+            <a-button type="link" href="/user/transaction/add">添加交易</a-button>
+        </a-card>
     </div>
 </template>
 
 <script>
-    import axios from 'axios'
-    import {api_head, host} from "@/static/constans";
     import UserAccountList from "@/components/account/UserAccountList";
-
+    import UserProfile from "@/components/user/UserProfile";
+    import TransactionList from "@/components/transaction/TransactionList";
 
     export default {
-        components: {UserAccountList},
+        components: {UserProfile, UserAccountList, TransactionList},
         props: ['id'],
         name: "UserInfo",
         data() {
             return {info: {id: null, name: null, email: null}}
-        },
-        mounted() {
-            let url;
-            if (this.id === undefined) {
-                url = host + "/api/user/info";
-            } else {
-
-                url = host + "/api/users/" + this.id;
-            }
-
-            axios.get(url, {
-                headers: {
-                    "X-ZERO-API-TOKEN": this.$cookies.get(api_head)
-                }
-            })
-                .then(response => {
-                    let result = response.data;
-                    let code = result.code;
-                    let message = result.message;
-                    let data = result.data;
-                    if (code === -200) {
-                        alert("用户未找到")
-                        return
-                    }
-                    if (code !== 200) {
-                        alert(message);
-                        return
-                    }
-                    this.info = {
-                        id: data.id,
-                        name: data.name,
-                        email: data.email
-                    }
-                }).catch(reason => {
-                alert(reason);
-            })
         }
     }
 </script>
