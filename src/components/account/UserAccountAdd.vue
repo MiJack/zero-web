@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="submit">
+      <!--  <form @submit.prevent="submit">
             <div class="item">
                 <span style="float: left">账号类型：</span>
 
@@ -15,7 +15,26 @@
                 <input name="accountNumber" v-model="accountNumber"/> <br/>
             </div>
             <button type="submit">提交</button>
-        </form>
+        </form>-->
+        <a-form @submit="handleSubmit" layout="horizontal">
+
+            <a-form-item label="账号类型">
+
+                <AccountTypeSelect ref="accountTypeSelect"/>
+            </a-form-item>
+
+            <a-form-item label="账号名称">
+                <a-input name="accountName" v-model="accountName"/>
+            </a-form-item>
+
+            <a-form-item label="账号编号">
+                <a-input name="accountNumber" v-model="accountNumber"/>
+            </a-form-item>
+
+            <a-form-item>
+                <a-button type="primary"  html-type="submit" >提交</a-button>
+            </a-form-item>
+        </a-form>
 
 
     </div>
@@ -36,7 +55,7 @@
             }
         },
         methods: {
-            submit: function () {
+            handleSubmit: function () {
                 const accountType = this.$refs.accountTypeSelect.getSelectAccountType();
                 axios.post("/api/user/account/create", {
                     accountType: accountType,
@@ -56,7 +75,7 @@
                             alert(message);
                             return
                         }
-                        this.$cookies.set(api_head, result.data.apiToken.token);
+                        // this.$cookies.set(api_head, result.data.apiToken.token);
                     })
             }
         },
