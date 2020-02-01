@@ -6,11 +6,10 @@
         <h1>info</h1>
         用户名： {{ info.name}}<br/>
         邮箱： {{ info.email }}<br/>
-
+        <a-avatar :size="360" src="https://avatars3.githubusercontent.com/u/4158061?s=460&v=4"/>
 
         <h1>账户管理</h1>
-        账户列表
-        <router-link to="/user/account/add">添加账户</router-link>
+        <a-button type="link" href="/user/account/add">添加账户</a-button>
         <UserAccountList/>
         分页
         <h1>消费管理</h1>
@@ -81,7 +80,7 @@
     }
 </script>
 
-<style >
+<style>
     .icon {
         /*width: 0px;*/
         height: 24px;

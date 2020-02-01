@@ -1,17 +1,24 @@
 <template>
     <div>
-        <ul>
-            <li class="select" :key="index" v-for="(account,index) in accounts">
-                <span class="account-id">{{account.id}}</span>
-                <span class="account-title">{{account.title}}</span>
-                <span>
-                    <img v-bind:src="account.accountType.iconUrl" class="icon"/>
-                    <span class="account-type-name">{{account.accountType.name}}</span>
-                    <span class="account-type-billingType">{{account.accountType.billingType}}</span>
+
+        <a-table
+                :columns="columns"
+                :rowKey="record => record.id"
+                :dataSource="accounts"
+        >
+               <span slot="accountType" slot-scope="accountType">
+                    <img v-bind:src="accountType.iconUrl" class="icon"/>
+                    <span class="account-type-name">{{accountType.name}}</span>
+                   <a-tooltip slot="suffix" v-bind:title="accountType.billingType">
+                       <a-icon type="info-circle" style="color: rgba(0,0,0,.45)"/>
+                   </a-tooltip>
                 </span>
-                <span class="account-number">{{account.number}}</span>
-            </li>
-        </ul>
+            <span slot="accountOp">
+                <a-button type="link">查看交易</a-button>
+                <a-button type="danger">删除账号</a-button>
+            </span>
+
+        </a-table>
     </div>
 </template>
 
@@ -19,11 +26,34 @@
     import axios from "axios";
     import {api_head} from "@/static/constans";
 
+    const columns = [
+        {
+            title: 'Id',
+            dataIndex: 'id',
+            width: '5%',
+        },
+        {
+            title: '账号名称',
+            dataIndex: 'title',
+            width: '20%',
+        },
+        {
+            title: '账号类型',
+            dataIndex: 'accountType',
+            scopedSlots: {customRender: 'accountType'},
+        },
+        {
+            title: '操作',
+            dataIndex: 'accountOp',
+            scopedSlots: {customRender: 'accountOp'},
+        },
+    ];
     export default {
         name: "UserAccountList",
         data: function () {
             return {
-                accounts: []
+                accounts: [],
+                columns
             }
         },
         mounted: function () {
