@@ -1,18 +1,14 @@
 <template>
     <div>
-        <ul style="float: left">
-
-            <li class="select" :key="index" v-for="(account,index) in accounts">
-                <input name="accountId" type="radio" v-model="selectAccount" v-bind:value="account.id">
+        <a-select v-model="selectAccount">
+            <a-select-option v-bind:value="account.id" :key="index" v-for="(account,index) in accounts"
+                             firstActiveValue="true">
+                <img v-bind:src="account.accountType.iconUrl" class="icon"/>
+                <span width="200px"></span>
                 <span class="account-number">{{account.number}}</span>
-                <span>
-                    <img v-bind:src="account.accountType.iconUrl" class="icon"/>
-                    <span class="account-type-name">{{account.accountType.name}}</span>
-                </span>
+            </a-select-option>
+        </a-select>
 
-
-            </li>
-        </ul>
     </div>
 </template>
 
