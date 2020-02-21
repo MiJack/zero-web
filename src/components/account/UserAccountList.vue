@@ -1,39 +1,34 @@
 <template>
     <div>
-        <a-table
-                :columns="columns"
-                :rowKey="record => record.id"
-                :dataSource="accounts"
-        >
-            <a-row slot="accountType" slot-scope="accountType">
-                <a-col span="2">
-                    <img v-bind:src="accountType.iconUrl" class="icon"/>
-                </a-col>
-                <a-col span="10">
+        <a-table :dataSource="accounts">
+            <a-table-column title="id" dataIndex="id" key="id"/>
+            <a-table-column title="账号名称" dataIndex="title" key="title"/>
+            <a-table-column title="账户类型" key="accountType" dataIndex="accountType">
+                <template slot-scope="accountType">
+                    <a-row slot="accountType">
+                        <a-col span="2">
+                            <img v-bind:src="accountType.iconUrl" class="icon"/>
+                        </a-col>
+                        <a-col span="10">
                     <span class="account-type-name">{{accountType.name}}
                      <a-tooltip slot="suffix" v-bind:title="accountType.billingType">
                         <a-icon type="info-circle" style="color: rgba(0,0,0,.45)"/>
                     </a-tooltip>
                     </span>
 
-                </a-col>
-            </a-row>
-            <a-row slot="accountOp" align="right">
-                <a-button type="link">查看交易</a-button>
-                <a-button type="danger">注销账号</a-button>
-            </a-row>
-            <a-row slot="lastTransactionTime">
-                -
-            </a-row>
-            <a-row slot="accountAddTime">
-                <a-col align="right">
-                    2020年2月1日
-                </a-col>
-                <a-col align="right">
-                    12:12:12
-                </a-col>
-            </a-row>
+                        </a-col>
+                    </a-row>
+                </template>
+            </a-table-column>
 
+            <a-table-column title="操作" key="accountOp">
+                <template slot-scope="record">
+                    <span>
+                        <a-button type="link" :href="'/user/account/'+record.id+'/info'">查看交易</a-button>
+                        <a-button type="danger">注销账号</a-button>
+                    </span>
+                </template>
+            </a-table-column>
         </a-table>
     </div>
 </template>
@@ -79,12 +74,39 @@
             width: '20%',
         },
     ];
+    const data = [
+        {
+            key: '1',
+            firstName: 'John',
+            lastName: 'Brown',
+            age: 32,
+            address: 'New York No. 1 Lake Park',
+            tags: ['nice', 'developer'],
+        },
+        {
+            key: '2',
+            firstName: 'Jim',
+            lastName: 'Green',
+            age: 42,
+            address: 'London No. 1 Lake Park',
+            tags: ['loser'],
+        },
+        {
+            key: '3',
+            firstName: 'Joe',
+            lastName: 'Black',
+            age: 32,
+            address: 'Sidney No. 1 Lake Park',
+            tags: ['cool', 'teacher'],
+        },
+    ];
     export default {
         name: "UserAccountList",
         data: function () {
             return {
                 accounts: [],
-                columns
+                columns,
+                data
             }
         },
         mounted: function () {

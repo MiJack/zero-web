@@ -20,7 +20,7 @@
 
 <script>
     import AccountSelect from "@/components/account/AccountSelect";
-    import CurrencyInput from "@/components/transaction/CurrencyInput";
+    import CurrencyInput from "@/components/currency/CurrencyInput";
 
     export default {
         name: "UserTransactionAdd",

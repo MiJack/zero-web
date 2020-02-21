@@ -7,12 +7,17 @@ import axios from 'axios'
 import {host} from './static/constans'
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import Trend from "vuetrend";
+import Viser from 'viser-vue'
+
 
 Vue.config.productionTip = false
 
+Vue.use(Viser)
 Vue.use(VueCookies)
 Vue.use(VueRouter)
 Vue.use(Antd);
+Vue.use(Trend)
 
 
 const router = new VueRouter({
