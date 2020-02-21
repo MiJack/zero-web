@@ -1,21 +1,5 @@
 <template>
     <div>
-        <a-row gutter="16">
-            <a-col :span="4">
-                <CurrencyStatistic/>
-            </a-col>
-            <a-col :span="4">
-                <CurrencyStatistic/>
-            </a-col>
-            <a-col :span="4">
-                <CurrencyStatistic/>
-            </a-col>
-            <a-col :span="4">
-                <CurrencyStatistic/>
-            </a-col>
-
-        </a-row>
-
 
         <a-row>
             <a-col :span="4">
@@ -68,8 +52,10 @@
 </template>
 
 <script>
+
     export default {
-        name: "AccountStatistic"
+        name: "AccountStatistic",
+
     }
 </script>
 

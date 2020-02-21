@@ -15,8 +15,8 @@
     const DataSet = require('@antv/data-set');
 
     const sourceData = [
-        {month: 'Jan', Tokyo: 7.0, London: 3.9},
-        {month: 'Feb', Tokyo: 6.9, London: 4.2},
+        {month: 'Jan.1', Tokyo: 7.0, London: 3.9},
+        {month: 'Feb.1', Tokyo: 6.9, London: 4.2},
         {month: 'Mar', Tokyo: 9.5, London: 5.7},
         {month: 'Apr', Tokyo: 14.5, London: 8.5},
         {month: 'May', Tokyo: 18.4, London: 11.9},
@@ -53,7 +53,7 @@
                 style: {stroke: '#fff', lineWidth: 1},
             };
         },
-        name: "AccountOverview"
+        name: "AccountCostOverview"
     }
 </script>
 

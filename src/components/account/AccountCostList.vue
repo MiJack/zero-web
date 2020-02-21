@@ -1,6 +1,6 @@
 <template>
     <div>
-        <DateSelector/>
+<!--        <DateSelector/>-->
         <a-table :dataSource="cost">
             <a-table-column title="id" dataIndex="id" key="id"/>
             <a-table-column title="开销名称" dataIndex="name" key="name"/>
@@ -39,6 +39,7 @@
     import DateSelector from "@/components/common/DateSelector";
     export default {
         name: "AccountCostList",
+        // eslint-disable-next-line vue/no-unused-components
         components: {DateSelector},
         data: function () {
             return {

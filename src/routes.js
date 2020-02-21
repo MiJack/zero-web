@@ -10,6 +10,7 @@ import AccountTypeAdd from "@/components/account/AccountTypeAdd";
 import HomePage from "./components/HomePage";
 import UserAccountList from "@/components/account/UserAccountList";
 import UserAccountInfo from "@/components/account/UserAccountInfo";
+import CostDetailInfo from "@/components/cost/CostDetailInfo";
 
 const routes = [
     {path: '/', component: Index},
@@ -21,6 +22,7 @@ const routes = [
     {path: '/user/info', component: UserInfo},
     {path: '/user/:id', component: UserInfo, props: true},
     {path: '/user/account/:id/info', component: UserAccountInfo, props: true},
+    {path: '/user/cost/:id/info', component: CostDetailInfo, props: true},
     {path: '/user/account/demo/info', component: UserAccountInfo, props: true},
     {path: '/user/account/add', component: UserAccountAdd, props: true},
     {path: '/manager/account/type/add', component: AccountTypeAdd, props: true},
